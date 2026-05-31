@@ -111,6 +111,18 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|google_video|vendor_audio).*\n', '')
         .regex_replace(r'([ \t]*</MediaCodecs>)', r'    <Include href="media_codecs_dolby_vision.xml" />\n\1'),
     (
+        'vendor/etc/media_codecs_canoe_v1_vendor.xml',
+        'vendor/etc/media_codecs_canoe_v2_vendor.xml',
+        'vendor/etc/media_codecs_canoe_sku1_vendor.xml',
+        'vendor/etc/media_codecs_canoe_sku2_vendor.xml',
+    ): blob_fixup()
+        .regex_replace(r'<!--\s*<MediaCodec name="c2\.qti\.dv\.decoder" type="video/dolby-vision" >',
+                       r'<MediaCodec name="c2.qti.dv.decoder" type="video/dolby-vision" >')
+        .regex_replace(r'\n[ \t]*-->(\s*</Decoders>)', r'\1')
+        .regex_replace(r'<!--\s*<MediaCodec name="c2\.qti\.dv\.encoder" type="video/dolby-vision">',
+                       r'<MediaCodec name="c2.qti.dv.encoder" type="video/dolby-vision">')
+        .regex_replace(r'\n[ \t]*-->(\s*</Encoders>)', r'\1'),
+    (
         'vendor/lib64/hw/android.hardware.bluetooth.audio_sw.so',
         'vendor/lib64/hw/libaudiocorehal.default.so',
         'vendor/lib64/hw/libaudiocorehal.qti.so',
