@@ -97,3 +97,51 @@ sh_binary {
     src: "init.qcom.sh",
     vendor: true,
 }
+
+sh_binary {
+    name: "init.kernel.post_boot.sh",
+    src: "init.kernel.post_boot.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.init_boot-memory.sh",
+    src: "init.kernel.init_boot-memory.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-memory.sh",
+    src: "init.kernel.post_boot-memory.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe.sh",
+    src: "init.kernel.post_boot-canoe.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe_5_1.sh",
+    src: "init.kernel.post_boot-canoe_5_1.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe_5_2.sh",
+    src: "init.kernel.post_boot-canoe_5_2.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe_6_1.sh",
+    src: "init.kernel.post_boot-canoe_6_1.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-canoe_default_6_2.sh",
+    src: "init.kernel.post_boot-canoe_default_6_2.sh",
+    vendor: true,
+}

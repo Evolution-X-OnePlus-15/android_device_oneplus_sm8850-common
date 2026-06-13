@@ -186,6 +186,7 @@ PRODUCT_PACKAGES += \
     charger_fstab.qcom \
     fstab.qcom \
     fstab.qcom.vendor_ramdisk \
+    fstab.zram.50p \
     init.class_main.sh \
     init.oplus.rc \
     init.qcom.early_boot.sh \
@@ -194,6 +195,14 @@ PRODUCT_PACKAGES += \
     init.qcom.recovery.rc \
     init.qcom.sh \
     init.target.rc \
+    init.kernel.init_boot-memory \
+    init.kernel.post_boot-canoe \
+    init.kernel.post_boot-canoe_5_1 \
+    init.kernel.post_boot-canoe_5_2 \
+    init.kernel.post_boot-canoe_6_1 \
+    init.kernel.post_boot-canoe_default_6_2 \
+    init.kernel.post_boot-memory \
+    init.kernel.post_boot \
     ueventd.oplus.rc \
     ueventd.qcom.rc
 
