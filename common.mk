@@ -541,7 +541,9 @@ endif
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.oplus-multihal \
-    sensors.dynamic_sensor_hal
+    vendor.lineage.oplus_als.service \
+    sensors.dynamic_sensor_hal \
+    sensors.qsh_wrapper
     
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
