@@ -108,6 +108,29 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('vendor.qti.hardware.display.config-V11-ndk.so', 'vendor.qti.hardware.display.config-V13-ndk.so'),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+    'vendor/lib64/libpwirishalwrapper.so': blob_fixup()
+        .replace_needed('android.hardware.graphics.composer3-V3-ndk.so', 'android.hardware.graphics.composer3-V4-ndk.so'),
+    'vendor/lib64/libsdmcore.so': blob_fixup()
+        .binary_regex_replace(
+            b'/my_product/vendor/etc/display_apollo_list.xml',
+            b'/vendor/etc/oplus_disp/display_apollo_list.xml',
+        )
+        .binary_regex_replace(
+            b'/my_product/vendor/etc/display_apollo_list_',
+            b'/vendor/etc/oplus_disp/display_apollo_list_',
+        )
+        .binary_regex_replace(
+            b'/my_product/vendor/etc/',
+            b'/vendor/etc/oplus_disp/',
+        )
+        .add_needed('libbase.so'),
+    (
+        'vendor/bin/wifi_qos_daemon',
+        'vendor/lib64/libVoiceSdk.so',
+        'vendor/lib64/libcapiv2uvvendor.so',
+        'vendor/lib64/liblistensoundmodel2vendor.so',
+    ): blob_fixup()
+        .replace_needed('libtensorflowlite_c.so', 'libtensorflowlite_c_vendor.so'),
     'vendor/usr/keylayout/gpio-keys.kl': blob_fixup()
         .add_line_if_missing('key 735   ASSIST'),
 }  # fmt: skip
