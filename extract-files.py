@@ -94,7 +94,12 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libprotobuf-cpp-lite.so', 'libprotobuf-cpp-lite-21.12.so'),
     'system_ext/lib64/libwfdnative.so': blob_fixup()
         .add_needed('libinput_shim.so'),
-    # Inject Dolby Vision codec include into every non-vendor canoe variant.
+    # Inject Dolby Vision codec include into every non-vendor canoe variant (DV nodes live in
+    # odm/etc/media_codecs_dolby_vision.xml, remapped to vendor/etc/ so MediaCodecsXmlParser
+    # can resolve <Include href="..."/> relative to the same /vendor/etc/ search dir).
+    # Empirically verified on device: pushing dolby_vision.xml to /vendor/etc/ and adding
+    # the Include to canoe_v2.xml caused c2.qti.dv.{decoder,decoder.secure,encoder} to appear
+    # in IComponentStore/default after reboot — confirmed via dumpsys.
     (
         'vendor/etc/media_codecs_canoe_sku1.xml',
         'vendor/etc/media_codecs_canoe_sku2.xml',
@@ -104,6 +109,11 @@ blob_fixups: blob_fixups_user_type = {
     ): blob_fixup()
         .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|google_video|vendor_audio).*\n', '')
         .regex_replace(r'([ \t]*</MediaCodecs>)', r'    <Include href="media_codecs_dolby_vision.xml" />\n\1'),
+    # Dolby Vision: the c2.qti.dv decoder/decoder.secure/encoder nodes ship COMMENTED in the
+    # *_vendor.xml codec variants — and those (not the non-vendor canoe_v2.xml) are the files the
+    # framework's Codec2InfoBuilder parses. Un-comment them in place so MediaCodecList registers DV
+    # and VIDEO -> Dolby Vision recording can create c2.qti.dv.encoder (else it aborts with no file).
+    # Mirrors OnePlus stock (ships them commented) and the sm8750/sun fixup. Device-verified.
     (
         'vendor/etc/media_codecs_canoe_v1_vendor.xml',
         'vendor/etc/media_codecs_canoe_v2_vendor.xml',
