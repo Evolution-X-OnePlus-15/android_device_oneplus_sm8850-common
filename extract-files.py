@@ -19,10 +19,12 @@ from extract_utils.main import (
 
 namespace_imports = [
     'device/oneplus/sm8850-common',
+    'device/oneplus/infiniti',
     'hardware/oplus',
     'hardware/qcom-caf/sm8850',
     'hardware/qcom-caf/wlan',
     'vendor/oneplus/sm8850-common',
+    'vendor/oneplus/infiniti',
     'vendor/qcom/opensource/commonsys/display',
     'vendor/qcom/opensource/commonsys-intf/display',
     'vendor/qcom/opensource/dataservices',
