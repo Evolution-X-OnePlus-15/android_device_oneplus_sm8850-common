@@ -528,6 +528,9 @@ vendor/bin/vendor_modprobe.sh
 vendor/etc/init/hw/init.qti.kernel.rc
 vendor/etc/init/hw/init.qti.kernel.target.rc
 
+# Keymaster
+vendor/lib64/libmodem_device_ids.so
+
 # Media
 odm/etc/camera/media_profiles.xml
 odm/etc/media_profiles_V1_0.xml
