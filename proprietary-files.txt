@@ -530,6 +530,7 @@ vendor/etc/init/hw/init.qti.kernel.target.rc
 
 # Keymaster
 vendor/bin/KmInstallKeybox
+vendor/lib64/libmodem_device_ids.so
 
 # Media
 odm/etc/camera/media_profiles.xml
