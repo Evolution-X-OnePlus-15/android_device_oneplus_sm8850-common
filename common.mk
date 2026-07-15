@@ -99,6 +99,8 @@ PRODUCT_PACKAGES += \
 # Camera
 TARGET_BUILD_DEVICE_AS_WEBCAM := true
 
+$(call soong_config_set,camera,allow_nonincreasing_timestamps,true)
+
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider-V3-ndk.vendor
 
