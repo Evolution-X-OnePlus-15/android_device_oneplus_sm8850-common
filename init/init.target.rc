@@ -170,3 +170,17 @@ service vendor.camera-provider /vendor/bin/hw/vendor.qti.camera.provider-service
     capabilities SYS_NICE IPC_LOCK BLOCK_SUSPEND
     task_profiles CameraServiceCapacity HighPerformance ProcessCapacityHigh
     setenv ADSP_LIBRARY_PATH ";/system/lib/rfsa/adsp;/system/vendor/lib/rfsa/adsp;/dsp;/vendor/dsp;/odm/lib/rfsa/adsp;/vendor/lib/rfsa/adsp"
+
+on property:debug.ltpo_features=1
+    setprop persist.vendor.ltpo_features 1
+    write /sys/kernel/oplus_display/adfr_config 0x109f
+
+on property:debug.ltpo_features=0
+    setprop persist.vendor.ltpo_features 0
+    write /sys/kernel/oplus_display/adfr_config 0x0
+
+on property:persist.vendor.ltpo_features=1 && property:vendor.post_boot.parsed=1
+    write /sys/kernel/oplus_display/adfr_config 0x109f
+
+on property:persist.vendor.ltpo_features=0 && property:vendor.post_boot.parsed=1
+    write /sys/kernel/oplus_display/adfr_config 0x0
