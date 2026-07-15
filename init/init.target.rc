@@ -169,3 +169,17 @@ on early-boot && property:persist.vendor.pcie.boot_option=*
 on shutdown
     write /sys/kernel/qcom_rproc/shutdown_in_progress 1
     stop vendor.per_proxy
+
+on property:debug.ltpo_features=1
+    setprop persist.vendor.ltpo_features 1
+    write /sys/kernel/oplus_display/adfr_config 0x109f
+
+on property:debug.ltpo_features=0
+    setprop persist.vendor.ltpo_features 0
+    write /sys/kernel/oplus_display/adfr_config 0x0
+
+on property:persist.vendor.ltpo_features=1 && property:vendor.post_boot.parsed=1
+    write /sys/kernel/oplus_display/adfr_config 0x109f
+
+on property:persist.vendor.ltpo_features=0 && property:vendor.post_boot.parsed=1
+    write /sys/kernel/oplus_display/adfr_config 0x0
