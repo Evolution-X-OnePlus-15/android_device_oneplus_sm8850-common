@@ -103,12 +103,14 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/etc/media_codecs_canoe_sku3.xml',
         'vendor/etc/media_codecs_canoe_v1.xml',
         'vendor/etc/media_codecs_canoe_v2.xml',
+        'vendor/etc/media_codecs_canoe_v3.xml',
     ): blob_fixup()
         .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|google_video|vendor_audio).*\n', '')
         .regex_replace(r'([ \t]*</MediaCodecs>)', r'    <Include href="media_codecs_dolby_vision.xml" />\n\1'),
     (
         'vendor/etc/media_codecs_canoe_v1_vendor.xml',
         'vendor/etc/media_codecs_canoe_v2_vendor.xml',
+        'vendor/etc/media_codecs_canoe_v3_vendor.xml',
         'vendor/etc/media_codecs_canoe_sku1_vendor.xml',
         'vendor/etc/media_codecs_canoe_sku2_vendor.xml',
     ): blob_fixup()
