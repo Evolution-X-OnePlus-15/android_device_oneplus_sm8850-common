@@ -1175,7 +1175,6 @@ odm/lib64/liboplus-uah-client.so
 odm/etc/uah/uahconfig.pb
 odm/etc/init/vendor.oplus.hardware.urcc-service.rc
 odm/etc/vintf/manifest/vendor.oplus.hardware.urcc-service.xml
-system_ext/lib64/liboplus-uah-client.so;MODULE_SUFFIX=_system_ext
 system_ext/lib64/libUahPerf_Jni.so
 
 # Time services
