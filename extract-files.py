@@ -79,7 +79,15 @@ blob_fixups: blob_fixups_user_type = {
         ),
     'system_ext/bin/horae': blob_fixup()
         .replace_needed('libprotobuf-cpp-lite.so', 'libprotobuf-cpp-lite-21.12.so'),
+    'system_ext/lib64/libwfdnative.so': blob_fixup()
+        .add_needed('libinput_shim.so'),
+    # Inject Dolby Vision codec include into every non-vendor canoe variant.
     (
+        'vendor/etc/media_codecs_canoe_sku1.xml',
+        'vendor/etc/media_codecs_canoe_sku2.xml',
+        'vendor/etc/media_codecs_canoe_sku3.xml',
+        'vendor/etc/media_codecs_canoe_v1.xml',
+        'vendor/etc/media_codecs_canoe_v2.xml',
         'system_ext/etc/seccomp_policy/tcmd.policy',
         'vendor/etc/seccomp_policy/syshealthmon.policy'
     ): blob_fixup()
@@ -88,6 +96,8 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.media.audio.common.types-V4-cpp.so', 'android.media.audio.common.types-V5-cpp.so'),
     'vendor/bin/vendor_modprobe.sh': blob_fixup()
         .regex_replace(r'\n.*OPLUS_FEATURE_WIFI_FTM[\s\S]*?OPLUS_FEATURE_WIFI_FTM.*\n', ''),
+        .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|google_video|vendor_audio).*\n', '')
+        .regex_replace(r'([ \t]*</MediaCodecs>)', r'    <Include href="media_codecs_dolby_vision.xml" />\n\1'),
     (
         'vendor/bin/hw/vendor.qti.media.c2@1.0-service',
         'vendor/bin/hw/vendor.qti.media.c2audio@1.0-service',
